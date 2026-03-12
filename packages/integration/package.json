@@ -1,0 +1,24 @@
+{
+  "name": "@claude-flow/integration",
+  "version": "1.0.0",
+  "description": "Token optimization and agent orchestration utilities for Claude Flow",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
