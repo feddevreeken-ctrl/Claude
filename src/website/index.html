@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexGen AI Consulting — Business Plan</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    /* ── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:        #0a0e1a;
+      --bg2:       #0f1425;
+      --bg3:       #141929;
+      --card:      #161d30;
+      --card2:     #1a2236;
+      --border:    #1e2a42;
+      --blue:      #3b82f6;
+      --blue-l:    #60a5fa;
+      --purple:    #8b5cf6;
+      --purple-l:  #a78bfa;
+      --teal:      #14b8a6;
+      --green:     #22c55e;
+      --amber:     #f59e0b;
+      --red:       #ef4444;
+      --text:      #e2e8f0;
+      --text-m:    #94a3b8;
+      --text-s:    #64748b;
+      --radius:    12px;
+      --radius-l:  18px;
+      --shadow:    0 4px 24px rgba(0,0,0,.45);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+    a { color: var(--blue-l); text-decoration: none; }
+
+    /* ── Nav ──────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,14,26,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+    }
+    .nav-brand {
+      font-weight: 700; font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--blue-l), var(--purple-l));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: var(--text-m); font-size: .87rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── Hero ─────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 6rem 2rem 4rem;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,.12) 0%, transparent 70%);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(59,130,246,.12); border: 1px solid rgba(59,130,246,.3);
+      color: var(--blue-l); font-size: .8rem; font-weight: 600;
+      padding: .35rem .9rem; border-radius: 999px; margin-bottom: 1.5rem;
+      letter-spacing: .04em; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800; line-height: 1.15;
+      max-width: 820px;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--blue-l) 0%, var(--purple-l) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      margin-top: 1.2rem; font-size: 1.15rem;
+      color: var(--text-m); max-width: 600px;
+    }
+    .hero-kpis {
+      display: flex; flex-wrap: wrap; gap: 1.2rem;
+      margin-top: 3rem; justify-content: center;
+    }
+    .kpi-pill {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1rem 1.6rem;
+      min-width: 150px; text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+    .kpi-pill:hover { border-color: var(--blue); transform: translateY(-3px); }
+    .kpi-pill .val { font-size: 1.6rem; font-weight: 800; color: var(--blue-l); display: block; }
+    .kpi-pill .lbl { font-size: .78rem; color: var(--text-s); font-weight: 500; letter-spacing: .03em; text-transform: uppercase; margin-top: .2rem; }
+    .hero-cta { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: #fff; font-weight: 600; padding: .75rem 1.8rem;
+      border-radius: var(--radius); cursor: pointer; border: none;
+      font-size: .95rem; transition: opacity .2s, transform .2s;
+    }
+    .btn-primary:hover { opacity: .88; transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid var(--border); color: var(--text-m);
+      background: transparent; font-weight: 600; padding: .75rem 1.8rem;
+      border-radius: var(--radius); cursor: pointer; font-size: .95rem;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-outline:hover { border-color: var(--blue); color: var(--text); }
+
+    /* ── Layout helpers ───────────────────────────────── */
+    section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--blue-l); margin-bottom: .6rem;
+    }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 800; margin-bottom: .5rem; }
+    h3 { font-size: 1.1rem; font-weight: 700; }
+    .section-intro { color: var(--text-m); max-width: 620px; margin-bottom: 3rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 1.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-l); padding: 1.6rem;
+      transition: border-color .2s;
+    }
+    .card:hover { border-color: rgba(59,130,246,.35); }
+    .card h3 { margin-bottom: .5rem; }
+    .chart-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-l); padding: 1.6rem 1.8rem 1.4rem;
+    }
+    .chart-card h3 { margin-bottom: 1.2rem; font-size: 1rem; color: var(--text-m); font-weight: 600; }
+    .chart-wrap { position: relative; width: 100%; }
+    .divider {
+      border: none; border-top: 1px solid var(--border);
+      max-width: 1200px; margin: 0 auto;
+    }
+
+    /* ── Problem section ──────────────────────────────── */
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+    .problem-card {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem;
+    }
+    .problem-card .icon { font-size: 1.8rem; margin-bottom: .8rem; }
+    .problem-card h4 { font-size: .95rem; font-weight: 700; margin-bottom: .4rem; }
+    .problem-card p { font-size: .87rem; color: var(--text-m); }
+
+    /* ── Revenue streams ──────────────────────────────── */
+    .stream-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-l); padding: 1.6rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .stream-card:hover { border-color: rgba(59,130,246,.4); transform: translateY(-4px); }
+    .stream-tag {
+      display: inline-block; font-size: .72rem; font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase;
+      padding: .25rem .7rem; border-radius: 999px; margin-bottom: .9rem;
+    }
+    .tag-blue   { background: rgba(59,130,246,.15);  color: var(--blue-l); }
+    .tag-purple { background: rgba(139,92,246,.15);  color: var(--purple-l); }
+    .tag-teal   { background: rgba(20,184,166,.15);  color: var(--teal); }
+    .tag-amber  { background: rgba(245,158,11,.15);  color: var(--amber); }
+    .price { font-size: 1.5rem; font-weight: 800; margin: .6rem 0 .3rem; }
+    .margin-badge {
+      display: inline-block; background: rgba(34,197,94,.12);
+      color: var(--green); font-size: .8rem; font-weight: 700;
+      padding: .2rem .7rem; border-radius: 999px;
+    }
+    .stream-detail { margin-top: 1rem; font-size: .87rem; color: var(--text-m); }
+    .stream-detail li { margin-bottom: .3rem; list-style: none; padding-left: 1rem; position: relative; }
+    .stream-detail li::before { content: '→'; position: absolute; left: 0; color: var(--blue-l); }
+
+    /* ── Audience ─────────────────────────────────────── */
+    .segment-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-l); padding: 1.5rem;
+      display: flex; flex-direction: column; gap: .6rem;
+    }
+    .seg-header { display: flex; align-items: center; gap: .7rem; }
+    .seg-icon { font-size: 1.6rem; }
+    .seg-title { font-weight: 700; font-size: 1rem; }
+    .seg-budget { font-size: .85rem; color: var(--teal); font-weight: 600; }
+    .seg-desc { font-size: .87rem; color: var(--text-m); }
+    .seg-wins { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .3rem; }
+    .win-tag {
+      background: rgba(20,184,166,.1); color: var(--teal);
+      font-size: .75rem; padding: .2rem .6rem;
+      border-radius: 999px; font-weight: 600;
+    }
+
+    /* ── Costs table ──────────────────────────────────── */
+    .cost-table { width: 100%; border-collapse: collapse; }
+    .cost-table th, .cost-table td {
+      padding: .75rem 1rem; text-align: left; font-size: .88rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cost-table th { color: var(--text-s); font-weight: 600; text-transform: uppercase; font-size: .76rem; letter-spacing: .06em; }
+    .cost-table tr:last-child td { border-bottom: none; font-weight: 700; color: var(--blue-l); }
+    .cost-table .note { font-size: .78rem; color: var(--text-s); }
+
+    /* ── Competitive ──────────────────────────────────── */
+    .comp-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: .8rem 1rem; border-radius: var(--radius);
+      margin-bottom: .5rem; background: var(--card2);
+    }
+    .comp-label { width: 180px; font-size: .88rem; font-weight: 600; flex-shrink: 0; }
+    .comp-bar-wrap { flex: 1; height: 10px; background: var(--bg); border-radius: 999px; overflow: hidden; }
+    .comp-bar { height: 100%; border-radius: 999px; }
+    .comp-val { width: 120px; font-size: .85rem; color: var(--text-m); text-align: right; flex-shrink: 0; }
+    .bar-big4   { background: linear-gradient(90deg, #ef4444, #f97316); width: 100%; }
+    .bar-boutiq { background: linear-gradient(90deg, #f59e0b, #eab308); width: 60%; }
+    .bar-free   { background: linear-gradient(90deg, #22c55e, #16a34a); width: 22%; }
+    .bar-nexgen { background: linear-gradient(90deg, var(--blue), var(--purple)); width: 16%; }
+    .bar-nexgen-w { width: 16%; }
+    .comp-highlight { border: 1px solid rgba(59,130,246,.4); background: rgba(59,130,246,.06); }
+
+    /* ── Risk matrix ──────────────────────────────────── */
+    .risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .risk-card {
+      background: var(--card2); border-left: 3px solid;
+      border-radius: 0 var(--radius) var(--radius) 0; padding: 1.1rem 1.3rem;
+    }
+    .risk-card.high   { border-color: var(--red); }
+    .risk-card.medium { border-color: var(--amber); }
+    .risk-card.low    { border-color: var(--green); }
+    .risk-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .4rem; }
+    .risk-name { font-weight: 700; font-size: .92rem; }
+    .risk-badge { font-size: .72rem; font-weight: 700; padding: .15rem .55rem; border-radius: 999px; }
+    .badge-high   { background: rgba(239,68,68,.15); color: var(--red); }
+    .badge-medium { background: rgba(245,158,11,.15); color: var(--amber); }
+    .badge-low    { background: rgba(34,197,94,.15);  color: var(--green); }
+    .risk-mit { font-size: .82rem; color: var(--text-m); margin-top: .5rem; }
+    .risk-mit::before { content: 'Mitigation: '; font-weight: 700; color: var(--text-s); }
+
+    /* ── Timeline ─────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: .55rem; top: 0; bottom: 0;
+      width: 2px; background: var(--border);
+    }
+    .tl-item { position: relative; margin-bottom: 1.6rem; }
+    .tl-dot {
+      position: absolute; left: -2rem; top: .2rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--blue); border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(59,130,246,.3);
+    }
+    .tl-item.done .tl-dot { background: var(--green); box-shadow: 0 0 0 3px rgba(34,197,94,.2); }
+    .tl-month { font-size: .78rem; font-weight: 700; color: var(--blue-l); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .2rem; }
+    .tl-title { font-weight: 700; font-size: .95rem; }
+    .tl-desc { font-size: .85rem; color: var(--text-m); margin-top: .2rem; }
+
+    /* ── Team ─────────────────────────────────────────── */
+    .team-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius-l); padding: 1.5rem; text-align: center;
+    }
+    .team-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; margin: 0 auto 1rem;
+    }
+    .team-role { font-size: .8rem; color: var(--text-s); text-transform: uppercase; letter-spacing: .05em; margin-top: .3rem; }
+    .team-pay { display: inline-block; margin-top: .6rem; background: rgba(59,130,246,.1); color: var(--blue-l); font-size: .8rem; font-weight: 600; padding: .2rem .7rem; border-radius: 999px; }
+
+    /* ── Footer ───────────────────────────────────────── */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      text-align: center; padding: 2.5rem 2rem;
+      color: var(--text-s); font-size: .85rem;
+    }
+    footer strong { color: var(--text-m); }
+
+    /* ── Scrollbar ────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .comp-label { width: 120px; font-size: .78rem; }
+      .comp-val { width: 80px; font-size: .78rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-brand">NexGen AI Consulting</div>
+  <div class="nav-links">
+    <a href="#problem">Problem</a>
+    <a href="#services">Services</a>
+    <a href="#financials">Financials</a>
+    <a href="#audience">Audience</a>
+    <a href="#team">Team</a>
+    <a href="#timeline">Timeline</a>
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-badge">📋 Business Plan · Version 1.0 · March 2026</div>
+  <h1>Student-Led <span>AI Consultancy</span><br/>for the Modern SME</h1>
+  <p class="hero-sub">Expert-quality AI consulting at SME-friendly prices, delivered by a motivated cohort of students supervised by industry professionals.</p>
+
+  <div class="hero-kpis">
+    <div class="kpi-pill">
+      <span class="val">£6–7k</span>
+      <span class="lbl">Startup Cost</span>
+    </div>
+    <div class="kpi-pill">
+      <span class="val">£210k</span>
+      <span class="lbl">Year 1 Revenue</span>
+    </div>
+    <div class="kpi-pill">
+      <span class="val">35%</span>
+      <span class="lbl">Year 2 Net Margin</span>
+    </div>
+    <div class="kpi-pill">
+      <span class="val">70%</span>
+      <span class="lbl">Audit Gross Margin</span>
+    </div>
+    <div class="kpi-pill">
+      <span class="val">4–6 wks</span>
+      <span class="lbl">Avg. Sales Cycle</span>
+    </div>
+    <div class="kpi-pill">
+      <span class="val">£1.2M</span>
+      <span class="lbl">Year 3 Target</span>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#financials"><button class="btn-primary">View Financial Model</button></a>
+    <a href="#services"><button class="btn-outline">Explore Services</button></a>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ── PROBLEM ────────────────────────────────────────── -->
+<section id="problem">
+  <div class="section-label">The Opportunity</div>
+  <h2>Why SMEs Are Left Behind on AI</h2>
+  <p class="section-intro">70–85% of AI projects fail to reach production (Gartner, 2025). For SMEs, the problem isn't lack of interest — it's lack of accessible expertise.</p>
+
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="icon">💸</div>
+      <h4>Hiring is Unaffordable</h4>
+      <p>A mid-level AI engineer costs £60,000–£90,000/yr in salary alone — beyond most SME budgets.</p>
+    </div>
+    <div class="problem-card">
+      <div class="icon">🏦</div>
+      <h4>Big Agencies Are Out of Reach</h4>
+      <p>McKinsey/Accenture AI engagements start at £100,000+. SMEs can't justify that spend.</p>
+    </div>
+    <div class="problem-card">
+      <div class="icon">🤷</div>
+      <h4>No Internal Expertise</h4>
+      <p>Vendor sales pitches go unchallenged. Companies buy wrong tools and waste budget with no guide.</p>
+    </div>
+    <div class="problem-card">
+      <div class="icon">🔄</div>
+      <h4>Failed Pilots Never Scale</h4>
+      <p>Without structured delivery, AI PoCs die in spreadsheets and never reach production.</p>
+    </div>
+    <div class="problem-card">
+      <div class="icon">⚖️</div>
+      <h4>Regulatory Fear</h4>
+      <p>GDPR, the EU AI Act, and data governance concerns paralyse decision-makers without a guide.</p>
+    </div>
+    <div class="problem-card">
+      <div class="icon">🎯</div>
+      <h4>The Gap We Fill</h4>
+      <p>NexGen delivers structured, documented AI delivery at 60–80% less than commercial alternatives.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── SERVICES ────────────────────────────────────────── -->
+<section id="services">
+  <div class="section-label">Revenue Streams</div>
+  <h2>Four Products, Four Margin Levels</h2>
+  <p class="section-intro">A tiered product ladder moves clients from low-risk entry (audit) through implementation and into sticky recurring revenue (retainer).</p>
+
+  <div class="grid-4">
+    <div class="stream-card">
+      <span class="stream-tag tag-blue">Entry Product</span>
+      <h3>AI Readiness Audit</h3>
+      <div class="price">£2,500 – £4,500</div>
+      <span class="margin-badge">70–75% margin</span>
+      <ul class="stream-detail">
+        <li>2-week engagement</li>
+        <li>30-page written report</li>
+        <li>Prioritised AI roadmap</li>
+        <li>2 students + 0.25 supervisor</li>
+        <li>Cost to deliver: ~£1,000</li>
+      </ul>
+    </div>
+    <div class="stream-card">
+      <span class="stream-tag tag-purple">Core Product</span>
+      <h3>Implementation Project</h3>
+      <div class="price">£8,000 – £25,000</div>
+      <span class="margin-badge">55–65% margin</span>
+      <ul class="stream-detail">
+        <li>6–16 week build</li>
+        <li>Single AI use case delivered</li>
+        <li>Integration + documentation</li>
+        <li>3–5 students + 0.5 supervisor</li>
+        <li>Cost to deliver: £4,000–£8,000</li>
+      </ul>
+    </div>
+    <div class="stream-card">
+      <span class="stream-tag tag-teal">Recurring Revenue</span>
+      <h3>Monthly Retainer</h3>
+      <div class="price">£800 – £2,500/mo</div>
+      <span class="margin-badge">60–72% margin</span>
+      <ul class="stream-detail">
+        <li>10–20 hrs/month advisory</li>
+        <li>Tool monitoring & tuning</li>
+        <li>Prompt engineering updates</li>
+        <li>Mostly student-led</li>
+        <li>Cost to deliver: £300–£700/mo</li>
+      </ul>
+    </div>
+    <div class="stream-card">
+      <span class="stream-tag tag-amber">Workshops</span>
+      <h3>AI Literacy Training</h3>
+      <div class="price">£1,200 – £2,500</div>
+      <span class="margin-badge">65–75% margin</span>
+      <ul class="stream-detail">
+        <li>Half or full-day sessions</li>
+        <li>Up to 20 participants</li>
+        <li>Non-technical staff focus</li>
+        <li>Sales, ops, HR, finance</li>
+        <li>Cost to deliver: £400–£600</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Margin comparison chart -->
+  <div style="margin-top: 2.5rem;">
+    <div class="chart-card">
+      <h3>Gross Margin by Service Type (%)</h3>
+      <div class="chart-wrap" style="height: 260px;">
+        <canvas id="marginChart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── AUDIENCE ────────────────────────────────────────── -->
+<section id="audience">
+  <div class="section-label">Target Market</div>
+  <h2>Who We Serve</h2>
+  <p class="section-intro">We focus on UK-based SMEs with 10–250 employees and £2M–£50M turnover — digitally active, but without in-house AI expertise.</p>
+
+  <div class="grid-2" style="margin-bottom: 2rem;">
+    <div>
+      <div class="grid-2" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="segment-card">
+          <div class="seg-header">
+            <div class="seg-icon">⚖️</div>
+            <div>
+              <div class="seg-title">Professional Services</div>
+              <div class="seg-budget">£5,000–£20,000 budget</div>
+            </div>
+          </div>
+          <div class="seg-desc">Law firms, accountants, marketing agencies, HR consultancies — document-heavy with high manual overhead.</div>
+          <div class="seg-wins">
+            <span class="win-tag">Doc summarisation</span>
+            <span class="win-tag">Contract review</span>
+            <span class="win-tag">Email drafting</span>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="seg-header">
+            <div class="seg-icon">🛒</div>
+            <div>
+              <div class="seg-title">E-commerce & Retail</div>
+              <div class="seg-budget">£4,000–£15,000 budget</div>
+            </div>
+          </div>
+          <div class="seg-desc">Online retailers with 5–100 staff battling customer service volume and inventory complexity.</div>
+          <div class="seg-wins">
+            <span class="win-tag">Chatbots</span>
+            <span class="win-tag">Demand forecasting</span>
+            <span class="win-tag">AI product copy</span>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="seg-header">
+            <div class="seg-icon">🏭</div>
+            <div>
+              <div class="seg-title">Manufacturing</div>
+              <div class="seg-budget">£8,000–£30,000 budget</div>
+            </div>
+          </div>
+          <div class="seg-desc">Small factories and logistics brokers with scheduling and quality control bottlenecks.</div>
+          <div class="seg-wins">
+            <span class="win-tag">Anomaly detection</span>
+            <span class="win-tag">Route optimisation</span>
+            <span class="win-tag">Doc parsing</span>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="seg-header">
+            <div class="seg-icon">🏥</div>
+            <div>
+              <div class="seg-title">Healthcare</div>
+              <div class="seg-budget">£5,000–£18,000 budget</div>
+            </div>
+          </div>
+          <div class="seg-desc">Private practices and care homes drowning in admin, CQC documentation, and compliance.</div>
+          <div class="seg-wins">
+            <span class="win-tag">Transcription</span>
+            <span class="win-tag">Appt management</span>
+            <span class="win-tag">Report generation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chart-card" style="display:flex; flex-direction:column; justify-content:center;">
+      <h3>Target Segment Mix (Year 2 Revenue Split)</h3>
+      <div class="chart-wrap" style="height: 280px;">
+        <canvas id="segmentChart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── COMPETITIVE ────────────────────────────────────── -->
+<section id="competitive">
+  <div class="section-label">Market Position</div>
+  <h2>Pricing vs. Competition</h2>
+  <p class="section-intro">We're not the cheapest option — we're the best-value structured team for SMEs who need reliability and documentation, not just code.</p>
+
+  <div style="margin-bottom: 1.5rem;">
+    <div class="comp-row">
+      <div class="comp-label">Big 4 / Accenture</div>
+      <div class="comp-bar-wrap"><div class="comp-bar bar-big4"></div></div>
+      <div class="comp-val">£80k – £500k+</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-label">Boutique AI Agency</div>
+      <div class="comp-bar-wrap"><div class="comp-bar bar-boutiq"></div></div>
+      <div class="comp-val">£20k – £80k</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-label">Solo Freelancer</div>
+      <div class="comp-bar-wrap"><div class="comp-bar bar-free"></div></div>
+      <div class="comp-val">£5k – £25k</div>
+    </div>
+    <div class="comp-row comp-highlight">
+      <div class="comp-label" style="color:var(--blue-l); font-weight:800;">✦ NexGen AI</div>
+      <div class="comp-bar-wrap"><div class="comp-bar bar-nexgen"></div></div>
+      <div class="comp-val" style="color:var(--blue-l); font-weight:700;">£4k – £25k</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <h3>Why We Can Undercut: Cost Structure vs. Traditional Consultancy</h3>
+    <div class="chart-wrap" style="height: 260px;">
+      <canvas id="costCompChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── FINANCIALS ─────────────────────────────────────── -->
+<section id="financials">
+  <div class="section-label">Financial Model</div>
+  <h2>Revenue, Costs &amp; Profitability</h2>
+  <p class="section-intro">Conservative projections based on 2 founders, 4–6 student consultants, and one part-time senior advisor from Day 1.</p>
+
+  <!-- Revenue Chart -->
+  <div class="chart-card" style="margin-bottom: 1.5rem;">
+    <h3>Quarterly Revenue vs. Costs vs. Net Profit (Year 1–2)</h3>
+    <div class="chart-wrap" style="height: 320px;">
+      <canvas id="revenueChart"></canvas>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <!-- Growth line -->
+    <div class="chart-card">
+      <h3>3-Year Revenue Growth Trajectory</h3>
+      <div class="chart-wrap" style="height: 240px;">
+        <canvas id="growthChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Startup costs -->
+    <div class="chart-card">
+      <h3>Upfront Startup Costs Breakdown</h3>
+      <div class="chart-wrap" style="height: 240px;">
+        <canvas id="startupCostChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cost table -->
+  <div class="card" style="margin-top: 1.5rem;">
+    <h3 style="margin-bottom: 1rem;">Itemised Startup Budget</h3>
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Low</th>
+          <th>High</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Company registration (Ltd)</td><td>£50</td><td>£50</td><td class="note">Companies House</td></tr>
+        <tr><td>Professional indemnity insurance</td><td>£800</td><td>£1,500</td><td class="note">Essential for consulting</td></tr>
+        <tr><td>Website (domain + hosting + build)</td><td>£500</td><td>£1,500</td><td class="note">Can be student-built</td></tr>
+        <tr><td>Branding &amp; design</td><td>£300</td><td>£800</td><td class="note">Logo, templates, pitch deck</td></tr>
+        <tr><td>Legal contract templates</td><td>£500</td><td>£1,500</td><td class="note">Client agreements, NDAs</td></tr>
+        <tr><td>Software tools (annual)</td><td>£600</td><td>£1,200</td><td class="note">Notion, Slack, Figma, GitHub, Loom</td></tr>
+        <tr><td>API credits for demos</td><td>£200</td><td>£500</td><td class="note">OpenAI/Anthropic dev &amp; demos</td></tr>
+        <tr><td>Initial marketing</td><td>£500</td><td>£1,000</td><td class="note">LinkedIn ads, events</td></tr>
+        <tr><td>Accountant (setup + Year 1)</td><td>£800</td><td>£1,500</td><td class="note">Tax, payroll, VAT</td></tr>
+        <tr style="font-weight:700">
+          <td><strong>Total</strong></td>
+          <td><strong>£4,250</strong></td>
+          <td><strong>£9,500</strong></td>
+          <td class="note" style="color:var(--blue-l)">Lean target: ~£6,500</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Monthly overhead -->
+  <div class="card" style="margin-top: 1rem;">
+    <h3 style="margin-bottom: .8rem;">Monthly Fixed Overhead (Year 1)</h3>
+    <div style="display:flex; flex-wrap:wrap; gap: .6rem;">
+      <div style="background:var(--card2); border-radius:8px; padding:.6rem 1rem; font-size:.87rem;">
+        <span style="color:var(--text-s); font-size:.75rem; text-transform:uppercase; font-weight:600; display:block; margin-bottom:.2rem;">Software</span>
+        £80–£150/mo
+      </div>
+      <div style="background:var(--card2); border-radius:8px; padding:.6rem 1rem; font-size:.87rem;">
+        <span style="color:var(--text-s); font-size:.75rem; text-transform:uppercase; font-weight:600; display:block; margin-bottom:.2rem;">API Usage</span>
+        £50–£200/mo
+      </div>
+      <div style="background:var(--card2); border-radius:8px; padding:.6rem 1rem; font-size:.87rem;">
+        <span style="color:var(--text-s); font-size:.75rem; text-transform:uppercase; font-weight:600; display:block; margin-bottom:.2rem;">Marketing</span>
+        £200–£400/mo
+      </div>
+      <div style="background:var(--card2); border-radius:8px; padding:.6rem 1rem; font-size:.87rem;">
+        <span style="color:var(--text-s); font-size:.75rem; text-transform:uppercase; font-weight:600; display:block; margin-bottom:.2rem;">Accountant</span>
+        £100–£150/mo
+      </div>
+      <div style="background:var(--card2); border-radius:8px; padding:.6rem 1rem; font-size:.87rem;">
+        <span style="color:var(--text-s); font-size:.75rem; text-transform:uppercase; font-weight:600; display:block; margin-bottom:.2rem;">Misc</span>
+        £100–£200/mo
+      </div>
+      <div style="background:rgba(59,130,246,.1); border:1px solid rgba(59,130,246,.3); border-radius:8px; padding:.6rem 1rem; font-size:.87rem; font-weight:700; color:var(--blue-l);">
+        <span style="color:var(--text-s); font-size:.75rem; text-transform:uppercase; font-weight:600; display:block; margin-bottom:.2rem;">Total</span>
+        ~£530–£1,100/mo
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── TEAM ────────────────────────────────────────────── -->
+<section id="team">
+  <div class="section-label">Organisation</div>
+  <h2>Team Structure</h2>
+  <p class="section-intro">Lean founding team backed by tiered student consultants recruited from university courses, AI societies, and hackathons.</p>
+
+  <div class="grid-3" style="margin-bottom: 2rem;">
+    <div class="team-card">
+      <div class="team-avatar">👤</div>
+      <h3>Managing Director</h3>
+      <div class="team-role">Co-Founder · Full Time</div>
+      <p style="font-size:.85rem; color:var(--text-m); margin-top:.7rem;">Sales, client relationships, business development, strategy. Owns the pipeline and account management.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">⚙️</div>
+      <h3>Technical Director</h3>
+      <div class="team-role">Co-Founder · Full Time</div>
+      <p style="font-size:.85rem; color:var(--text-m); margin-top:.7rem;">Architecture, quality control, technical hiring, delivery oversight. Final sign-off on all outputs.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">🎓</div>
+      <h3>Senior Advisor</h3>
+      <div class="team-role">Industry Professional · 0.25–0.5 FTE</div>
+      <p style="font-size:.85rem; color:var(--text-m); margin-top:.7rem;">Governance, senior review, client credibility. Could be a PhD supervisor, ex-industry professional, or lecturer.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-bottom: 1rem;">Student Consultant Tiers</h3>
+  <div class="grid-3">
+    <div class="card">
+      <h3>Junior Analyst</h3>
+      <div class="team-role" style="margin-bottom:.5rem;">1st–2nd Year Students</div>
+      <span class="team-pay">£12–14/hr or rev-share</span>
+      <p style="font-size:.85rem; color:var(--text-m); margin-top:.8rem;">Research, data collection, documentation, admin-heavy tasks. Learning phase — supervised on every deliverable.</p>
+    </div>
+    <div class="card">
+      <h3>Consultant</h3>
+      <div class="team-role" style="margin-bottom:.5rem;">3rd Year+ · 1+ Project Delivered</div>
+      <span class="team-pay">£15–18/hr</span>
+      <p style="font-size:.85rem; color:var(--text-m); margin-top:.8rem;">Owns workstreams within a project. Can conduct client interviews with supervision. Key delivery resource.</p>
+    </div>
+    <div class="card">
+      <h3>Senior Consultant</h3>
+      <div class="team-role" style="margin-bottom:.5rem;">Final Year / Postgrad</div>
+      <span class="team-pay">£20–25/hr or profit share</span>
+      <p style="font-size:.85rem; color:var(--text-m); margin-top:.8rem;">Leads client engagements, mentors juniors, owns technical architecture. Pathway to full-time hire.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── RISKS ───────────────────────────────────────────── -->
+<section id="risks">
+  <div class="section-label">Risk Assessment</div>
+  <h2>Risks &amp; Mitigations</h2>
+  <p class="section-intro">Transparent risk management is a selling point, not just a planning exercise. Clients trust us more when we're honest about our constraints.</p>
+
+  <div class="risk-grid">
+    <div class="risk-card high">
+      <div class="risk-header">
+        <span class="risk-name">Student Quality Inconsistency</span>
+        <span class="risk-badge badge-high">High</span>
+      </div>
+      <p style="font-size:.84rem; color:var(--text-m);">Variability in student skill levels could impact delivery quality.</p>
+      <p class="risk-mit">Tiered hiring system, senior review gate on all client deliverables, peer review process.</p>
+    </div>
+    <div class="risk-card high">
+      <div class="risk-header">
+        <span class="risk-name">Reputational Risk (Failed Project)</span>
+        <span class="risk-badge badge-high">High</span>
+      </div>
+      <p style="font-size:.84rem; color:var(--text-m);">One badly delivered project could derail the brand early on.</p>
+      <p class="risk-mit">Only accept projects clearly within proven capability. Decline bad-fit clients proactively.</p>
+    </div>
+    <div class="risk-card medium">
+      <div class="risk-header">
+        <span class="risk-name">Student Churn Mid-Project</span>
+        <span class="risk-badge badge-medium">Medium</span>
+      </div>
+      <p style="font-size:.84rem; color:var(--text-m);">Students leaving for placements, exams, or new opportunities.</p>
+      <p class="risk-mit">2-student minimum per project, rigorous documentation, knowledge transfer sessions.</p>
+    </div>
+    <div class="risk-card medium">
+      <div class="risk-header">
+        <span class="risk-name">Client Data Security</span>
+        <span class="risk-badge badge-medium">Medium</span>
+      </div>
+      <p style="font-size:.84rem; color:var(--text-m);">Handling sensitive business data with student team members.</p>
+      <p class="risk-mit">PI insurance, data processing agreements, no raw data stored on personal devices, NDAs.</p>
+    </div>
+    <div class="risk-card medium">
+      <div class="risk-header">
+        <span class="risk-name">Scope Creep</span>
+        <span class="risk-badge badge-medium">Medium</span>
+      </div>
+      <p style="font-size:.84rem; color:var(--text-m);">Clients expanding requirements without additional payment.</p>
+      <p class="risk-mit">Strict change request process from Day 1. Fixed-scope contracts with clear boundaries.</p>
+    </div>
+    <div class="risk-card medium">
+      <div class="risk-header">
+        <span class="risk-name">Regulatory (AI Act / GDPR)</span>
+        <span class="risk-badge badge-medium">Medium</span>
+      </div>
+      <p style="font-size:.84rem; color:var(--text-m);">Evolving AI regulation could expose us or clients to liability.</p>
+      <p class="risk-mit">Legal advisor review of engagements. Avoid high-risk AI use cases in Year 1.</p>
+    </div>
+    <div class="risk-card low">
+      <div class="risk-header">
+        <span class="risk-name">API Cost Overruns</span>
+        <span class="risk-badge badge-low">Low</span>
+      </div>
+      <p style="font-size:.84rem; color:var(--text-m);">LLM API costs exceeding budget on large projects.</p>
+      <p class="risk-mit">Cost cap clauses in contracts, pass-through billing for production usage.</p>
+    </div>
+    <div class="risk-card low">
+      <div class="risk-header">
+        <span class="risk-name">Sales Pipeline Dry Spell</span>
+        <span class="risk-badge badge-low">Low</span>
+      </div>
+      <p style="font-size:.84rem; color:var(--text-m);">Slow early pipeline if outbound doesn't convert quickly.</p>
+      <p class="risk-mit">University alumni network as warm leads. First 3 clients offered discounted rates for case studies.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── TIMELINE ────────────────────────────────────────── -->
+<section id="timeline">
+  <div class="section-label">Execution Roadmap</div>
+  <h2>12-Month Milestones</h2>
+  <p class="section-intro">A realistic month-by-month plan that treats the first quarter as a paid discovery phase, not a sprint to profit.</p>
+
+  <div class="grid-2">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">Month 1–2</div>
+        <div class="tl-title">Foundation</div>
+        <div class="tl-desc">Company registered, PI insurance active, website and brand live. First 10 outreach contacts made via LinkedIn and alumni network.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">Month 3</div>
+        <div class="tl-title">First Paying Client</div>
+        <div class="tl-desc">First AI Readiness Audit signed. Deliver it at 110% quality — this becomes the cornerstone case study.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">Month 4–5</div>
+        <div class="tl-title">First Implementation Project</div>
+        <div class="tl-desc">Scoped, started, and tracked rigorously. Recruit 2 additional student consultants. Test the delivery process end-to-end.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">Month 6</div>
+        <div class="tl-title">Case Study + First Retainer</div>
+        <div class="tl-desc">Publish detailed case study from Month 3 audit client. Convert first implementation project to a monthly retainer.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">Month 7–8</div>
+        <div class="tl-title">Team Expansion</div>
+        <div class="tl-desc">Hire 2 additional consultants. Pipeline now 3+ active projects simultaneously. Introduce formal QA process.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">Month 9</div>
+        <div class="tl-title">First Workshop</div>
+        <div class="tl-desc">Deliver first AI Literacy Training Workshop. Monthly revenue run rate hits £15,000+. Revenue mix now includes all 4 streams.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">Month 10–11</div>
+        <div class="tl-title">Funding Applications</div>
+        <div class="tl-desc">Apply for Innovate UK Smart Grant, university enterprise fund, and Growth Hub support. Begin Year 2 planning.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-month">Month 12</div>
+        <div class="tl-title">Year-End Review</div>
+        <div class="tl-desc">Assess vertical specialisation options. Plan second cohort expansion or geographic growth to a second university city.</div>
+      </div>
+    </div>
+
+    <div class="chart-card" style="display:flex; flex-direction:column; justify-content:center;">
+      <h3>Monthly Revenue Ramp (Year 1)</h3>
+      <div class="chart-wrap" style="height: 320px;">
+        <canvas id="rampChart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── DELIVERABLES ────────────────────────────────────── -->
+<section id="deliverables">
+  <div class="section-label">What We Build</div>
+  <h2>Common Client Deliverables</h2>
+  <p class="section-intro">Concrete products with realistic price ranges — not vague "AI strategy" fluff.</p>
+
+  <div class="grid-3">
+    <div class="card">
+      <div style="font-size:1.5rem; margin-bottom:.7rem;">🤖</div>
+      <h3>Internal Knowledge Chatbot</h3>
+      <div style="color:var(--blue-l); font-weight:700; margin:.5rem 0;">£6,000–£14,000</div>
+      <p style="font-size:.85rem; color:var(--text-m);">RAG-based chatbot trained on company documents, policies, and procedures. Staff ask questions in plain English.</p>
+      <div style="margin-top:.8rem; font-size:.78rem; color:var(--text-s);">Tools: Claude API · Pinecone · Dify</div>
+    </div>
+    <div class="card">
+      <div style="font-size:1.5rem; margin-bottom:.7rem;">📧</div>
+      <h3>Email Triage &amp; Draft Assistant</h3>
+      <div style="color:var(--blue-l); font-weight:700; margin:.5rem 0;">£5,000–£10,000</div>
+      <p style="font-size:.85rem; color:var(--text-m);">Automatically categorises incoming email, suggests responses, escalates urgent items. Integrates with Gmail/Outlook.</p>
+      <div style="margin-top:.8rem; font-size:.78rem; color:var(--text-s);">Tools: Claude API · Gmail API · n8n</div>
+    </div>
+    <div class="card">
+      <div style="font-size:1.5rem; margin-bottom:.7rem;">📄</div>
+      <h3>Invoice Data Extraction Pipeline</h3>
+      <div style="color:var(--blue-l); font-weight:700; margin:.5rem 0;">£4,000–£9,000</div>
+      <p style="font-size:.85rem; color:var(--text-m);">Extracts structured data from invoices and PDFs into spreadsheets or accounting software. Eliminates manual entry.</p>
+      <div style="margin-top:.8rem; font-size:.78rem; color:var(--text-s);">Tools: GPT-4o · OCR · Xero API</div>
+    </div>
+    <div class="card">
+      <div style="font-size:1.5rem; margin-bottom:.7rem;">💼</div>
+      <h3>AI-Powered CRM Assistant</h3>
+      <div style="color:var(--blue-l); font-weight:700; margin:.5rem 0;">£8,000–£18,000</div>
+      <p style="font-size:.85rem; color:var(--text-m);">Enriches CRM records, drafts follow-up emails, summarises call notes, and surfaces hot leads automatically.</p>
+      <div style="margin-top:.8rem; font-size:.78rem; color:var(--text-s);">Tools: HubSpot API · Claude · Make.com</div>
+    </div>
+    <div class="card">
+      <div style="font-size:1.5rem; margin-bottom:.7rem;">📊</div>
+      <h3>AI Reporting Dashboard</h3>
+      <div style="color:var(--blue-l); font-weight:700; margin:.5rem 0;">£10,000–£22,000</div>
+      <p style="font-size:.85rem; color:var(--text-m);">Natural-language querying over business data. Ask "what were our top 5 products last quarter?" and get a chart.</p>
+      <div style="margin-top:.8rem; font-size:.78rem; color:var(--text-s);">Tools: Python · LLM · Metabase / Grafana</div>
+    </div>
+    <div class="card">
+      <div style="font-size:1.5rem; margin-bottom:.7rem;">💬</div>
+      <h3>Customer Support Chatbot</h3>
+      <div style="color:var(--blue-l); font-weight:700; margin:.5rem 0;">£5,000–£12,000</div>
+      <p style="font-size:.85rem; color:var(--text-m);">Handles 60–80% of tier-1 support queries autonomously. Escalates complex issues to humans with full context.</p>
+      <div style="margin-top:.8rem; font-size:.78rem; color:var(--text-s);">Tools: Voiceflow · Claude API · Zendesk</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ── VISION ──────────────────────────────────────────── -->
+<section id="vision">
+  <div class="section-label">Long-Term Vision</div>
+  <h2>Where We Go After Year 1</h2>
+  <p class="section-intro">Three growth levers: vertical specialisation, franchise expansion, and proprietary tooling.</p>
+
+  <div class="grid-3">
+    <div class="card">
+      <div style="font-size:1.5rem; margin-bottom:.7rem;">🏆</div>
+      <h3>Vertical Specialisation (Year 2)</h3>
+      <p style="font-size:.87rem; color:var(--text-m); margin-top:.5rem;">Pick one vertical (e.g. healthcare admin, legal AI) and become the recognised expert. Command 30–40% premium over generalist price. Publish thought leadership, speak at sector events.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:1.5rem; margin-bottom:.7rem;">🌍</div>
+      <h3>University Franchise (Year 3)</h3>
+      <p style="font-size:.87rem; color:var(--text-m); margin-top:.5rem;">License the NexGen model to other UK universities — Manchester, Edinburgh, Bristol. Franchise fee + revenue share. National SME coverage without central hiring risk.</p>
+    </div>
+    <div class="card">
+      <div style="font-size:1.5rem; margin-bottom:.7rem;">🛠️</div>
+      <h3>Proprietary Tooling (Year 2–3)</h3>
+      <p style="font-size:.87rem; color:var(--text-m); margin-top:.5rem;">Build a white-label AI Audit Tool that automates parts of the discovery phase — turning a 2-week manual process into a 3-day tool-assisted one. Potential SaaS revenue stream.</p>
+    </div>
+  </div>
+
+  <div class="chart-card" style="margin-top: 1.5rem;">
+    <h3>Revenue Mix Evolution: Year 1 → Year 3</h3>
+    <div class="chart-wrap" style="height: 260px;">
+      <canvas id="mixChart"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <strong>NexGen AI Consulting</strong> · Business Plan v1.0 · March 2026<br />
+  <span style="margin-top:.4rem; display:block;">Student-led. Professionally delivered. SME-focused.</span>
+</footer>
+
+<!-- ── CHARTS ─────────────────────────────────────────── -->
+<script>
+  // Shared defaults
+  Chart.defaults.color = '#94a3b8';
+  Chart.defaults.borderColor = '#1e2a42';
+  Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
+
+  const BLUE    = '#3b82f6';
+  const PURPLE  = '#8b5cf6';
+  const TEAL    = '#14b8a6';
+  const GREEN   = '#22c55e';
+  const AMBER   = '#f59e0b';
+  const RED     = '#ef4444';
+  const BLUE_L  = '#60a5fa';
+  const PURP_L  = '#a78bfa';
+
+  function gradient(ctx, color1, color2) {
+    const g = ctx.createLinearGradient(0, 0, 0, 300);
+    g.addColorStop(0, color1);
+    g.addColorStop(1, color2);
+    return g;
+  }
+
+  // ── 1. Margin by Service ──────────────────────────────
+  new Chart(document.getElementById('marginChart'), {
+    type: 'bar',
+    data: {
+      labels: ['AI Readiness Audit', 'Implementation Project', 'Monthly Retainer', 'Training Workshop'],
+      datasets: [
+        {
+          label: 'Low Margin %',
+          data: [70, 55, 60, 65],
+          backgroundColor: 'rgba(59,130,246,.35)',
+          borderColor: BLUE,
+          borderWidth: 1.5,
+          borderRadius: 6,
+        },
+        {
+          label: 'High Margin %',
+          data: [75, 65, 72, 75],
+          backgroundColor: 'rgba(139,92,246,.5)',
+          borderColor: PURPLE,
+          borderWidth: 1.5,
+          borderRadius: 6,
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top' } },
+      scales: {
+        y: {
+          min: 0, max: 100,
+          ticks: { callback: v => v + '%' },
+          grid: { color: '#1e2a42' }
+        },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // ── 2. Segment Pie ────────────────────────────────────
+  new Chart(document.getElementById('segmentChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Professional Services', 'E-commerce & Retail', 'Manufacturing', 'Healthcare', 'Other / Non-Profit'],
+      datasets: [{
+        data: [35, 25, 20, 15, 5],
+        backgroundColor: [BLUE, PURPLE, TEAL, AMBER, '#475569'],
+        borderColor: '#161d30',
+        borderWidth: 3,
+        hoverOffset: 8
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '60%',
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 16, boxWidth: 12 } },
+        tooltip: { callbacks: { label: c => ` ${c.label}: ${c.raw}%` } }
+      }
+    }
+  });
+
+  // ── 3. Cost Comparison ────────────────────────────────
+  new Chart(document.getElementById('costCompChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Labour (consultant day rate)', 'Office & overhead', 'Management layer', 'Marketing & sales', 'Tech & tooling'],
+      datasets: [
+        {
+          label: 'Traditional Agency (£/day equiv.)',
+          data: [900, 300, 250, 200, 150],
+          backgroundColor: 'rgba(239,68,68,.4)',
+          borderColor: RED,
+          borderWidth: 1.5,
+          borderRadius: 4,
+        },
+        {
+          label: 'NexGen (£/day equiv.)',
+          data: [130, 20, 80, 40, 30],
+          backgroundColor: 'rgba(59,130,246,.5)',
+          borderColor: BLUE,
+          borderWidth: 1.5,
+          borderRadius: 4,
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      indexAxis: 'y',
+      plugins: { legend: { position: 'top' } },
+      scales: {
+        x: {
+          ticks: { callback: v => '£' + v },
+          grid: { color: '#1e2a42' }
+        },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  // ── 4. Quarterly Revenue Chart ────────────────────────
+  new Chart(document.getElementById('revenueChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Q1 Y1', 'Q2 Y1', 'Q3 Y1', 'Q4 Y1', 'Q1 Y2', 'Q2 Y2', 'Q3 Y2', 'Q4 Y2'],
+      datasets: [
+        {
+          label: 'Revenue (£k)',
+          data: [18, 42, 68, 82, 75, 95, 110, 130],
+          backgroundColor: 'rgba(59,130,246,.5)',
+          borderColor: BLUE,
+          borderWidth: 1.5,
+          borderRadius: 5,
+          order: 2
+        },
+        {
+          label: 'Total Costs (£k)',
+          data: [14, 26, 38, 48, 45, 57, 66, 78],
+          backgroundColor: 'rgba(239,68,68,.35)',
+          borderColor: RED,
+          borderWidth: 1.5,
+          borderRadius: 5,
+          order: 2
+        },
+        {
+          label: 'Net Profit (£k)',
+          data: [4, 16, 30, 34, 30, 38, 44, 52],
+          type: 'line',
+          borderColor: GREEN,
+          backgroundColor: 'rgba(34,197,94,.08)',
+          borderWidth: 2.5,
+          pointBackgroundColor: GREEN,
+          pointRadius: 5,
+          tension: 0.4,
+          fill: true,
+          order: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top' } },
+      scales: {
+        y: {
+          ticks: { callback: v => '£' + v + 'k' },
+          grid: { color: '#1e2a42' }
+        },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // ── 5. 3-Year Growth ──────────────────────────────────
+  new Chart(document.getElementById('growthChart'), {
+    type: 'line',
+    data: {
+      labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10', 'Q11', 'Q12'],
+      datasets: [
+        {
+          label: 'Revenue (£k)',
+          data: [18, 42, 68, 82, 75, 95, 110, 130, 160, 210, 270, 310],
+          borderColor: BLUE_L,
+          backgroundColor: 'rgba(96,165,250,.08)',
+          borderWidth: 2.5,
+          pointRadius: 4,
+          tension: 0.4,
+          fill: true
+        },
+        {
+          label: 'Net Profit (£k)',
+          data: [4, 16, 30, 34, 30, 38, 44, 52, 62, 80, 108, 130],
+          borderColor: GREEN,
+          backgroundColor: 'rgba(34,197,94,.05)',
+          borderWidth: 2.5,
+          pointRadius: 4,
+          tension: 0.4,
+          fill: true
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'top' } },
+      scales: {
+        y: {
+          ticks: { callback: v => '£' + v + 'k' },
+          grid: { color: '#1e2a42' }
+        },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // ── 6. Startup Costs Donut ────────────────────────────
+  new Chart(document.getElementById('startupCostChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['PI Insurance', 'Website & Branding', 'Legal Contracts', 'Software (1yr)', 'API Credits', 'Marketing', 'Accountant', 'Registration'],
+      datasets: [{
+        data: [1150, 1150, 1000, 900, 350, 750, 1150, 50],
+        backgroundColor: [RED, BLUE, PURPLE, TEAL, AMBER, '#f472b6', '#a78bfa', '#475569'],
+        borderColor: '#161d30',
+        borderWidth: 3,
+        hoverOffset: 8
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '58%',
+      plugins: {
+        legend: { position: 'bottom', labels: { padding: 10, boxWidth: 10, font: { size: 11 } } },
+        tooltip: { callbacks: { label: c => ` ${c.label}: £${c.raw.toLocaleString()}` } }
+      }
+    }
+  });
+
+  // ── 7. Monthly Ramp ───────────────────────────────────
+  new Chart(document.getElementById('rampChart'), {
+    type: 'line',
+    data: {
+      labels: ['Mo 1','Mo 2','Mo 3','Mo 4','Mo 5','Mo 6','Mo 7','Mo 8','Mo 9','Mo 10','Mo 11','Mo 12'],
+      datasets: [
+        {
+          label: 'Monthly Revenue (£k)',
+          data: [2, 4, 8, 12, 16, 17, 18, 22, 25, 26, 28, 30],
+          borderColor: BLUE_L,
+          backgroundColor: 'rgba(96,165,250,.1)',
+          borderWidth: 2.5,
+          pointRadius: 5,
+          pointBackgroundColor: BLUE_L,
+          tension: 0.4,
+          fill: true
+        },
+        {
+          label: 'Break-Even Line (£k)',
+          data: Array(12).fill(8),
+          borderColor: 'rgba(239,68,68,.5)',
+          borderWidth: 1.5,
+          borderDash: [6, 4],
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'top' },
+        annotation: {}
+      },
+      scales: {
+        y: {
+          ticks: { callback: v => '£' + v + 'k' },
+          grid: { color: '#1e2a42' }
+        },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // ── 8. Revenue Mix Stacked ────────────────────────────
+  new Chart(document.getElementById('mixChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Year 1', 'Year 2', 'Year 3'],
+      datasets: [
+        {
+          label: 'Audit',
+          data: [35, 20, 12],
+          backgroundColor: BLUE,
+          borderRadius: 4
+        },
+        {
+          label: 'Implementation',
+          data: [48, 45, 38],
+          backgroundColor: PURPLE,
+          borderRadius: 4
+        },
+        {
+          label: 'Retainer',
+          data: [10, 25, 32],
+          backgroundColor: TEAL,
+          borderRadius: 4
+        },
+        {
+          label: 'Workshops',
+          data: [5, 8, 10],
+          backgroundColor: AMBER,
+          borderRadius: 4
+        },
+        {
+          label: 'SaaS / Tooling',
+          data: [2, 2, 8],
+          backgroundColor: GREEN,
+          borderRadius: 4
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: { stacked: true, grid: { display: false } },
+        y: {
+          stacked: true,
+          max: 100,
+          ticks: { callback: v => v + '%' },
+          grid: { color: '#1e2a42' }
+        }
+      },
+      plugins: { legend: { position: 'top' } }
+    }
+  });
+</script>
+</body>
+</html>
